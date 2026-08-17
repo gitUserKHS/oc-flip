@@ -1,11 +1,18 @@
-# Zenodo deposit — paste-ready metadata
+# Zenodo deposit — DONE
 
-Fields below match the Zenodo upload form. Everything except **Creators** and
-**License** is filled in; those two are choices only the depositor can make
-(Zenodo requires at least one creator, and a license selection, before the
-record can be published).
+**Published 2026-08-17 via the GitHub release `v1.0.0`.**
+
+- Concept DOI (always latest): https://doi.org/10.5281/zenodo.21978843
+- This version: https://doi.org/10.5281/zenodo.21978844
+- Creator: Hyeongseok Kim, ORCID 0009-0000-5040-3551
+- License: CC BY 4.0 · Upload type: publication / preprint
+
+Metadata comes from `.zenodo.json` in the repository root; editing that
+file and cutting a new GitHub release publishes a new version under the
+same concept DOI. The form fields below are kept for reference.
 
 ---
+
 
 **Upload type:** Publication → Preprint
 (choose *Software* instead if you want the code to be the primary record; the

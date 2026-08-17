@@ -29,6 +29,11 @@ bendsoe1989 1(4), BF01650949 · sigmund2001top99 s001580050176 · andreassen2011
 - 라이선스는 engrXiv가 CC BY 4.0 단일 적용(선택지 없음). 분류는 Mechanical/Structural/Computational Engineering 계열로 — 수학·전산학 단독 주제는 배제 정책 대상.
 - 폼 복사용: `paper/submission_metadata.txt`.
 
+## Zenodo 기탁 완료 (2026-08-17)
+- GitHub 릴리스 `v1.0.0` → 웹훅(202) → 자동 아카이브. **concept DOI 10.5281/zenodo.21978843** (항상 최신), 이 버전 10.5281/zenodo.21978844.
+- 메타데이터는 `.zenodo.json`(제목·초록·키워드·CC BY 4.0·ORCID) — Zenodo가 레포명 추측하지 않도록 사전 배치.
+- 논문 데이터 가용성 문단에 concept DOI 삽입, 타이틀 페이지에 ORCID 추가.
+
 ## 다음 (v2)
 0. ~~코드 공개~~ 완료 — GitHub 96파일 push, gh API로 검증.
 1. Zenodo 기탁(`ZENODO.md` 메타데이터 준비 완료, `oc-flip_zenodo.zip` 94파일 6.2MB) → 라이선스만 선택.
