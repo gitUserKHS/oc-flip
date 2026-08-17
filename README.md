@@ -1,5 +1,7 @@
 # oc-flip — damping without tuning in the optimality-criteria iteration
 
+Repository: https://github.com/gitUserKHS/oc-flip
+
 Code, data and paper for a dynamical-systems study of the damped
 optimality-criteria (OC) update in SIMP topology optimization.
 

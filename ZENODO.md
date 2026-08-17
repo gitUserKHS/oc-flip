@@ -83,6 +83,7 @@ MIT or BSD-3-Clause for the code; Zenodo takes one license per record, so
 either pick one for the whole deposit or split it into two records.
 
 **Related identifiers**
+`is supplement to` → https://github.com/gitUserKHS/oc-flip (the code repository).
 `is supplement to` → the engrXiv DOI of the preprint (add once posted).
 The preprint's next version should in turn link back to this deposit.
 
@@ -92,8 +93,8 @@ The preprint's next version should in turn link back to this deposit.
 
 - [ ] `paper/main.pdf` renders correctly (10 figures, 6 tables, 0 unresolved
       references — verified 2026-08-17)
-- [ ] archive the repository as a single `.zip` (about 9 MB) or upload the
-      directories as they stand
+- [ ] archive the repository as a single `.zip` (6.2 MB, `oc-flip_zenodo.zip`)
+      or link the GitHub release directly (Zenodo-GitHub integration)
 - [x] creator: Hyeongseok Kim
 - [ ] license selected
 - [ ] after publishing, record the DOI in `CLAUDE.md` so later versions can
