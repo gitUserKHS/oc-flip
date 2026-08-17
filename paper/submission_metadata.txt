@@ -47,7 +47,7 @@ AUTHOR
 ------
 Hyeongseok Kim
 Affiliation: Independent Researcher, Uiwang, Republic of Korea
-ORCID: (paste your new iD)
+ORCID: 0009-0000-5040-3551
 
 
 LICENSE
@@ -65,9 +65,10 @@ COMPETING INTERESTS
 None.
 
 
-SUPPLEMENTAL DATA LINK (step 3 — a URL, not an upload)
-------------------------------------------------------
+SUPPLEMENTAL DATA LINKS (step 3 — URLs, not uploads)
+----------------------------------------------------
 https://github.com/gitUserKHS/oc-flip
+https://doi.org/10.5281/zenodo.21978843   (archived snapshot, concept DOI)
 
 
 FILE TO UPLOAD (step 3 — becomes the galley)
@@ -78,5 +79,6 @@ paper/main.pdf
 COMMENTS TO THE MODERATOR (optional, one line)
 ----------------------------------------------
 Code, checkpoints and figure scripts that regenerate every table and figure
-are public at https://github.com/gitUserKHS/oc-flip and are cited in the
-paper's data-availability statement.
+are public at https://github.com/gitUserKHS/oc-flip and archived at
+https://doi.org/10.5281/zenodo.21978843; both are cited in the paper's
+data-availability statement.
