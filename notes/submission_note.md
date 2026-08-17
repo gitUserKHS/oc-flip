@@ -3,6 +3,7 @@
 ## 최종 상태
 - `paper/main.pdf` 23쪽 (본문 15 + 그림 10장 + 부록). TODO 0건, 미해결 참조 0건, bibtex 에러 0건.
 - 저자: Hyeongseok Kim, Independent Researcher, Uiwang, Republic of Korea.
+- **AI 고지 문단 추가**: 실험·그림·집필에 LLM을 저자 지시 하에 사용, 연구 질문·설계·해석·최종 텍스트와 그 책임은 저자에게 있으며 커밋 이력이 사용 지점을 기록한다는 취지. engrXiv의 LLM 조항(과도 사용 시 인간 저술 추가 증거 요구) 대비 — 공개 레포 커밋에 Co-Authored-By가 찍혀 있어 선제 명시.
 - 데이터 가용성: **https://github.com/gitUserKHS/oc-flip 직접 인용** (2026-08-17 공개, 96파일). 아카이브 스냅샷 DOI는 후속 버전에 추가 예정.
 
 ## 서지 전수 검증 (2026-08-17, Crossref/출판사 대조)
@@ -23,7 +24,10 @@ bendsoe1989 1(4), BF01650949 · sigmund2001top99 s001580050176 · andreassen2011
 - 분류: 공학(구조/최적화), 학술 프리프린트 — 조건 충족.
 - 저자 표기 정확, 공유 권리 보유 — 조건 충족.
 - Declarations/RR/이해충돌/커버레터/추천 리뷰어: 불필요.
-- 업로드 파일: `paper/main.pdf` 하나.
+- 업로드 파일: `paper/main.pdf` 하나 (Janeway에서 이 파일이 곧 galley — 별도 생성 불필요).
+- Supplemental data는 업로드가 아니라 **링크 칸** → GitHub URL.
+- 라이선스는 engrXiv가 CC BY 4.0 단일 적용(선택지 없음). 분류는 Mechanical/Structural/Computational Engineering 계열로 — 수학·전산학 단독 주제는 배제 정책 대상.
+- 폼 복사용: `paper/submission_metadata.txt`.
 
 ## 다음 (v2)
 0. ~~코드 공개~~ 완료 — GitHub 96파일 push, gh API로 검증.
