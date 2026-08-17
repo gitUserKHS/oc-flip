@@ -1,0 +1,25 @@
+{
+  "upload_type": "publication",
+  "publication_type": "preprint",
+  "title": "Damping without tuning: the measurable stability threshold of the optimality-criteria iteration, and a controller that tracks it",
+  "creators": [
+    {
+      "name": "Kim, Hyeongseok",
+      "affiliation": "Independent Researcher, Uiwang, Republic of Korea"
+    }
+  ],
+  "license": "cc-by-4.0",
+  "access_right": "open",
+  "language": "eng",
+  "keywords": [
+    "topology optimization",
+    "optimality criteria",
+    "SIMP",
+    "numerical damping",
+    "period-doubling bifurcation",
+    "fixed-point iteration",
+    "adaptive step size",
+    "Anderson acceleration"
+  ],
+  "description": "<p>Paper, code, data and full research record for a dynamical-systems study of the damped optimality-criteria (OC) update in SIMP topology optimization.</p><p>The OC update has one free parameter, the damping exponent <em>eta</em>, conventionally fixed at 1/2 without a stated criterion. Exactly projected finite-difference Jacobians of the full update &mdash; finite element solve, filter, multiplier bisection and clipping &mdash; taken across meshes, boundary conditions, volume fractions, filters and penalizations, establish three empirical laws. (1) Oscillation is a period-doubling instability at eta* = 2/s_max, where s_max tops the spectrum of the log-log stiffness of the filtered sensitivity field; the local multipliers mu = 1 - eta*s predict measured onset and decay rates to three decimals. (2) That spectrum saturates at p+1 on top while its lower edge sits near zero, which pins the min-max (Richardson) optimal damping onto the flip boundary itself: at p = 3 the conventional value is that optimum. (3) The observed s_max belongs to the fixed point the iteration selects, and standard damping self-limits to fixed points with s_max &le; 2/eta, separating from the naturally saturated family exactly at p = 3.</p><p>The threshold is therefore a moving target: under penalization continuation, fixed damping at 1/2 ends oscillating in 12 of 32 runs. Because the free trajectory estimators read the flip branch precisely when it is active and the near-zero creep edge otherwise &mdash; a regime dependence that estimator-driven relaxation schemes do not account for &mdash; a four-line additive-increase/multiplicative-decrease controller can track the threshold unaided. With a single frozen parameter set it converges in all 64 continuation runs, matches the best hand tuning across an 11-configuration suite, and composes with Anderson acceleration so that each covers the other's failures.</p><p>This deposit contains the paper (<code>paper/main.pdf</code>) together with all code, checkpoints and figure scripts that reproduce every table and figure in it, plus the complete research record in <code>notes/</code> &mdash; including a retracted preview result, a withdrawn mechanism attribution and a causal claim corrected by measurement. Dependencies are numpy, scipy and matplotlib only.</p>"
+}
