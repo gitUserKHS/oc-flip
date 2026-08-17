@@ -1,0 +1,82 @@
+engrXiv submission — copy-paste fields
+======================================
+
+TITLE
+-----
+Damping without tuning: the measurable stability threshold of the
+optimality-criteria iteration, and a controller that tracks it
+
+
+ABSTRACT (plain text, 280 words)
+--------------------------------
+Every density-based topology optimization run using the optimality-criteria
+(OC) update makes one algorithmic choice: the damping exponent eta,
+folklore-set to 1/2. We measure what it controls. Exactly projected
+finite-difference Jacobians of the full update, across meshes, boundary
+conditions, volume fractions, filters and penalizations, give three empirical
+laws. One: oscillation is a period-doubling instability at eta* = 2/s_max, the
+top of the spectrum of the log-log stiffness of the filtered sensitivity
+field; the local multipliers mu = 1 - eta*s predict measured onset and decay
+rates to three decimals. Two: that spectrum saturates at p+1 on top while its
+lower edge sits at s = 0, and an edge at zero pins the min-max (Richardson)
+optimum onto the flip boundary itself: at p = 3 the folklore value is that
+optimum. The content of the coincidence is the spectral shape, not the
+optimum's worst-case rate, which the edge modes leave nearly vacuous; the
+damping's real work is done on the bulk at s = 1. Three: the observed s_max
+belongs to the fixed point the dynamics selects, and standard damping
+self-limits to s_max <= 2/eta, separating from the naturally saturated family
+exactly at p = 3. The threshold is thus a moving target: under penalization
+continuation, fixed 1/2 ends oscillating in 12 of 32 runs. It need not be. The
+trajectory estimators read the flip branch precisely when it is active and the
+s = 0 creep edge otherwise - a regime dependence that estimator-driven
+relaxation schemes do not account for - so a four-line
+additive-increase/multiplicative-decrease controller can track the threshold
+unaided: with one frozen parameter set it converges in all 64 continuation
+runs, matches the best hand tuning across an 11-configuration suite, and
+composes with Anderson acceleration so that each covers the other's failures.
+
+
+KEYWORDS
+--------
+topology optimization; optimality criteria; SIMP; numerical damping;
+period-doubling bifurcation; fixed-point iteration; adaptive step size;
+Anderson acceleration
+
+
+AUTHOR
+------
+Hyeongseok Kim
+Affiliation: Independent Researcher, Uiwang, Republic of Korea
+ORCID: (paste your new iD)
+
+
+LICENSE
+-------
+CC BY 4.0 — engrXiv applies this to every preprint; no choice to make.
+
+
+PUBLISHED DOI
+-------------
+none (not submitted to a journal)
+
+
+COMPETING INTERESTS
+-------------------
+None.
+
+
+SUPPLEMENTAL DATA LINK (step 3 — a URL, not an upload)
+------------------------------------------------------
+https://github.com/gitUserKHS/oc-flip
+
+
+FILE TO UPLOAD (step 3 — becomes the galley)
+--------------------------------------------
+paper/main.pdf
+
+
+COMMENTS TO THE MODERATOR (optional, one line)
+----------------------------------------------
+Code, checkpoints and figure scripts that regenerate every table and figure
+are public at https://github.com/gitUserKHS/oc-flip and are cited in the
+paper's data-availability statement.
