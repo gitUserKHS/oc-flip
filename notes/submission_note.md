@@ -3,7 +3,7 @@
 ## 최종 상태
 - `paper/main.pdf` 23쪽 (본문 15 + 그림 10장 + 부록). TODO 0건, 미해결 참조 0건, bibtex 에러 0건.
 - 저자: Hyeongseok Kim, Independent Researcher, Uiwang, Republic of Korea.
-- 데이터 가용성: 아카이브 기탁 예정 + 영구 식별자를 후속 버전에 추가, 그 전까지 저자 요청 제공 — engrXiv 선공개/레포 v2 순서에 맞춘 문구.
+- 데이터 가용성: **https://github.com/gitUserKHS/oc-flip 직접 인용** (2026-08-17 공개, 96파일). 아카이브 스냅샷 DOI는 후속 버전에 추가 예정.
 
 ## 서지 전수 검증 (2026-08-17, Crossref/출판사 대조)
 
@@ -26,6 +26,7 @@ bendsoe1989 1(4), BF01650949 · sigmund2001top99 s001580050176 · andreassen2011
 - 업로드 파일: `paper/main.pdf` 하나.
 
 ## 다음 (v2)
+0. ~~코드 공개~~ 완료 — GitHub 96파일 push, gh API로 검증.
 1. Zenodo 기탁(`ZENODO.md` 메타데이터 준비 완료, `oc-flip_zenodo.zip` 94파일 6.2MB) → 라이선스만 선택.
 2. 기탁 DOI를 데이터 가용성 문단에 넣어 engrXiv v2 갱신(영구 식별자라 링크 안 깨짐).
 3. 이후 저널 경로를 재개하면 `notes/review3_note.md`의 리비전 등급 항목부터.
