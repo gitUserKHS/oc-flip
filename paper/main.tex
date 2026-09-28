@@ -59,7 +59,8 @@ is a period-doubling instability at $\etastar=2/\smax$, the top of the
 spectrum of the log--log stiffness of the filtered sensitivity field;
 the local multipliers $\mu=1-\eta s$ predict measured onset and decay
 rates to three decimals. \emph{Two:} that spectrum saturates at
-$p{+}1$ on top while its lower edge sits at $s\approx0$, and an edge at
+$p{+}1$ on top---an edge that for exact gradients is provably an upper
+bound---while its lower edge sits at $s\approx0$, and an edge at
 zero pins the min--max (Richardson) optimum onto the flip boundary
 itself: at $p=3$ the folklore value is that optimum. The content of the
 coincidence is the spectral shape, not the optimum's worst-case rate,
@@ -68,14 +69,15 @@ done on the bulk at $s\approx1$. \emph{Three:} the observed $\smax$
 belongs to the fixed point the dynamics selects, and standard damping
 self-limits to $\smax\le2/\eta$, separating from the naturally
 saturated family exactly at $p=3$. The threshold is thus a moving
-target: under penalization continuation, fixed $\tfrac12$ ends
-oscillating in 12 of 32 runs. It need not be. The trajectory estimators
+target: under penalization continuation, fixed $\tfrac12$ fails in 20
+of 32 runs, 8 of them as oscillation masked below the amplitude
+tolerance. It need not be. The trajectory estimators
 $\muh,\sh$ read the flip branch precisely when it is active and the
 $s\approx0$ creep edge otherwise---a regime dependence that
 estimator-driven relaxation schemes do not account for---so a four-line
 additive-increase/multiplicative-decrease controller can track the
-threshold unaided: with one frozen parameter set it converges in all 64
-continuation runs, matches the best hand tuning across an
+threshold unaided: with one frozen parameter set it avoids
+oscillation, visible or masked, in all 64 continuation runs, matches the best hand tuning across an
 11-configuration suite, and composes with Anderson acceleration so that
 each covers the other's failures.
 \end{abstract}
@@ -149,14 +151,15 @@ construction under penalization continuation, where the natural
 family's threshold falls as $2/(p{+}1)$: from $1.0$ at $p=1$ through
 $0.5$ exactly at $p=3$ to $0.333$ at $p=5$. A fixed exponent cannot
 know this. In a continuation suite spanning four configurations, two
-ramp schedules and up to four starts each, fixed $\eta=\tfrac12$ ends
-oscillating in 12 of its 32 runs---on one configuration because the
-ramp outruns settling, on another because the destination's own
-measured threshold ($0.333$) lies below $\tfrac12$, which no schedule
-can repair (Section~\ref{sec:continuation}). Lowering $\eta$ instead trades the
-failure for its dual: fixed $\eta=0.3$ never oscillates there but
-carries the largest median compliance penalty of any converged method
-at a fixed budget.
+ramp schedules and up to four starts each, fixed $\eta=\tfrac12$ fails
+in 20 of its 32 runs---on one configuration because the ramp outruns
+settling, on another because the destination's own measured threshold
+($0.333$) lies below $\tfrac12$, which no schedule can repair, and on a
+third by stalling in a limit cycle on its own threshold, masked below
+the amplitude tolerance (Section~\ref{sec:continuation}). Lowering
+$\eta$ instead trades the failure for its dual: fixed $\eta=0.3$ never
+fails there but carries the largest median compliance penalty of any
+method that settles everywhere, at a fixed budget.
 
 \emph{Third: the iteration can feel its own threshold.} The trajectory
 estimators $\muh$ (dominant multiplier) and $\sh$ (directional
@@ -168,7 +171,8 @@ onto the flip branch, with $\eta\sh=2$ to three decimals in every
 saturated oscillation (Section~\ref{sec:regimes}). Gating $\sh$ by the
 sign of $\muh$ therefore yields a reliable threshold sensor, and a
 four-line controller built on it tracks the moving target: in the same
-continuation suite it converges in all 64 of its runs, following
+continuation suite it neither oscillates nor cycles masked in any of
+its 64 runs, following
 $2/(p(t){+}1)$ with a small lag that closes at the hold.
 
 Our contributions:
@@ -180,7 +184,12 @@ Our contributions:
   containing $2/\smax$ in every configuration; rates matching
   $|1-\eta\smax|$ with median deviation $0.001$ over 42 probes), with
   exact two-bar models for both signs of $s$. (b)~Spectral shape and
-  its consequence: $\smax$ saturates at $p{+}1$ while the lower edge
+  its consequence: $\smax$ saturates at $p{+}1$---for exact-gradient
+  SIMP an upper bound, not a prediction (the log-coordinate form of
+  Svanberg's convexity result \citep{svanberg1994convexity}), so that
+  $\eta<2/(p{+}1)$ is flip-free at every fixed point with strict
+  complementarity, while for sensitivity filtering the edge is
+  empirical (Section~\ref{sec:discussion})---and the lower edge
   sits at $s\approx0$, so the Richardson optimum coincides with the
   flip boundary---the folklore $\eta=\tfrac12$ is optimal at $p=3$, and
   the three folk remedies for oscillation (lower $\eta$, larger filter
@@ -728,7 +737,7 @@ comparison for those landings is not any nominal threshold but each
 endpoint's own: exactly projected spectra at the six endpoints give
 landing ratios $\eta_{\mathrm{end}}/(2/\smax^{\mathrm{end}})$ of
 $0.77$--$0.95$ in five runs and $1.01$ in the sixth---the controller
-parks at, or within measurement resolution of, the boundary of the
+ends at, or within measurement resolution of, the boundary of the
 fixed point it actually reached, which is where the min--max optimum of
 Section~\ref{sec:richardson} says an optimally damped iteration should
 sit. Fixed
@@ -775,9 +784,13 @@ reaches the natural family. Fixed $0.3$ survives the same group for the
 converse reason---$0.3<0.333$---and the controller, started from either
 $0.5$ or $1.0$, lands at $\eta\approx0.33$--$0.35$ on endpoints with
 $\smax\approx6.0$: it finds the destination's threshold without being
-told it. In total fixed $0.5$ ends
-oscillating in 12 of its 32 continuation runs and fixed $0.7$ in 28 of
-32, while the controller converges in all 64 of its runs; on the fast
+told it. In total fixed $0.5$ fails in 20 of its 32 continuation
+runs---12 visibly, 8 as limit cycles masked below the amplitude
+tolerance (item (iii))---and fixed $0.7$ in all 32 (28 visibly, 4
+masked); the step-down ladder never oscillates visibly but ends in a
+masked limit cycle in 12 of 32; the controller neither oscillates nor
+cycles masked in any of its 64 runs (a few end the budget still riding
+the boundary, at step amplitudes up to $6\times10^{-4}$). On the fast
 cantilever the controller started at $\eta_0=1.0$ gives the group best
 endpoint ($182$). On the slow
 cantilever schedule fixed $0.5$ survives the same ramp: there the
@@ -798,39 +811,56 @@ Section~\ref{sec:saturation} emerge from a realistic workflow.} At
 $r_{\min}=1.1$ the fixed-$0.5$ endpoint lands at $\smax=4.0$---the
 capacity ceiling $2/\eta$, on both schedules---while the controller from
 $\eta_0=1.0$ reaches the naturally saturated family at $\smax=6.0=p{+}1$
-(Fig.~\ref{fig:cont}c). The basin caveat cuts both ways and we report
-it: on this problem the ceiling-limited design happens to have slightly
-\emph{better} compliance ($195$ versus $198$, $+1.5\%$), while on the
-cantilever the controller's endpoint is best; threshold-tracking
-guarantees stability, not basin quality. On the hard filter
+(Fig.~\ref{fig:cont}c). The ceiling endpoint is not a converged design:
+with $\eta\,\smax=1.99$--$2.00$ it is a marginal limit cycle, masked below the
+amplitude tolerance (tail step amplitude $4\times10^{-5}$ to
+$6\times10^{-4}$, $\muh$ between $-0.97$ and $-1.00$, at all eight
+starts of the two schedules). Its lower compliance ($195$ versus $198$)
+is therefore that of an iterate still cycling, not a basin advantage---a
+reader ranking designs by amplitude-converged compliance would be
+misled exactly as Section~\ref{sec:sweeprates} warns. Among settled runs
+the controller from $\eta_0=1.0$ is best or within $0.4\%$ of the best
+in every group; threshold-tracking still guarantees stability, not
+basin quality. On the hard filter
 ($r_{\min}2.4$) detuning keeps every method's endpoint near
 $\smax\approx3.3$ and $224$ in compliance---continuation never stresses
 the folklore there, exactly as the filter results predict.
 
 \emph{(iv) Why not simply lower $\eta$?} Fixed $\eta=0.3$ never
-oscillates in this suite, and a reader could stop there. The summary
+oscillates in this suite, visibly or masked, and a reader could stop
+there. The summary
 rows of Table~\ref{tab:cont} price that choice: over-damping converts
 stability into slowness, and at a fixed budget slowness is design
 quality. Fixed $0.3$ carries the largest median compliance penalty of
-any non-oscillating method ($+1.38\%$, worst $+3.2\%$), against
-$+0.02\%$ (worst $+1.5\%$) for the controller started at $\eta_0=1.0$;
+any method that settles in every group ($+0.66\%$, worst $+3.2\%$,
+against the best settled run of each group), against $+0.02\%$ (worst
+$+0.4\%$) for the controller started at $\eta_0=1.0$;
 its advantage over the controller on the speed axis is likewise absent
 (both settle below $10^{-5}$ in five or six of six groups). This is the
 ``more stable but slower'' trade-off of Section~\ref{sec:richardson}
 made operational: the fixed choices sit on one side of it or the other,
 while the controller moves along it.
 
-One further closure comes free: at the $p=5$ hold the controller's damping settles
-at a median $0.331$ with endpoint $\smax=6.00$, i.e.\
-$\eta\,\smax=1.99$ on both schedules---the iteration parks exactly on
-the boundary that Section~\ref{sec:richardson} identifies as optimal
-and whose inequality the conclusion keeps.
+One further closure comes free: at the $p=5$ hold the controller's
+damping oscillates about a median $0.331$ (final 100 iterations) with
+endpoint $\smax=6.00$, i.e.\ $\eta\,\smax=1.98$--$2.00$ on both
+schedules---the iteration rides the boundary that
+Section~\ref{sec:richardson} identifies as optimal, keeping the
+inequality on average rather than pointwise: additive increase carries
+$\eta$ up to $20$--$30\%$ past $2/\smax$ before multiplicative decrease
+drops it back to $\approx1.7/\sh$, so that over the final 200
+iterations $\eta$ sits above the endpoint's threshold $44$--$48\%$ of
+the time, while the step amplitude decays to $1.5\times10^{-7}$ (fast)
+and $4\times10^{-9}$ (slow) by the end of the budget.
 
 \begin{table}[t]
 \centering\small
 \caption{Penalization continuation ($p:1\to5$): compliance at budget
 (endpoint $\smax$ in parentheses; $^{\ast}$\,oscillating at budget;
-bold = group best where unique). The natural-family endpoints show
+$^{\dagger}$\,masked: tail step amplitude in $(10^{-5},3\times10^{-3})$,
+below the oscillation tolerance, but tail $\muh\le-0.9$---a limit cycle;
+runs at the numerical floor are not tagged; bold = best settled run of
+the group where unique at the displayed precision). The natural-family endpoints show
 $\smax\approx6=p{+}1$, the ceiling-limited ones
 $\smax\approx4=2/\eta$.}
 \label{tab:cont}
@@ -839,30 +869,34 @@ $\smax\approx4=2/\eta$.}
 config & sched. & fixed $0.3$ & fixed $0.5$ & fixed $0.7$ & ladder &
 AIMD $0.5$ & AIMD $1.0$ \\
 \midrule
-MBB $r1.1$ & fast & 199\,(6.0) & \textbf{195\,(4.0)} &
-  197\,(4.6)$^{\ast}$ & 196\,(4.3) & 198\,(5.3) & 198\,(6.0) \\
+MBB $r1.1$ & fast & 199\,(6.0) & 195\,(4.0)$^{\dagger}$ &
+  197\,(4.6)$^{\ast}$ & 196\,(4.3)$^{\dagger}$ & 198\,(5.3) &
+  198\,(6.0) \\
 MBB $r2.4$ & fast & \textbf{223\,(3.2)} & 224\,(3.3) &
   248\,(3.3)$^{\ast}$ & 224\,(2.9) & 224\,(3.1) & 224\,(3.3) \\
 cant.\ $r1.1$ & fast & 188\,(4.2) & 188\,(4.2)$^{\ast}$ &
-  188\,(3.8)$^{\ast}$ & 183\,(3.2) & 187\,(5.3) &
+  188\,(3.8)$^{\ast}$ & 183\,(3.2)$^{\dagger}$ & 187\,(5.3) &
   \textbf{182\,(3.7)} \\
-MBB $r1.1$ & slow & 198\,(5.3) & \textbf{196\,(4.0)} &
-  198\,(3.6)$^{\ast}$ & 199\,(4.7) & 198\,(4.3) & 196\,(6.0) \\
+MBB $r1.1$ & slow & 198\,(5.3) & 196\,(4.0)$^{\dagger}$ &
+  198\,(3.6)$^{\ast}$ & 199\,(4.7)$^{\dagger}$ & 198\,(4.3) &
+  \textbf{196\,(6.0)} \\
 MBB $r2.4$ & slow & 224\,(3.0) & 224\,(3.3) & 235\,(2.8)$^{\ast}$ &
   224\,(3.3) & 224\,(3.3) & 224\,(3.3) \\
-cant.\ $r1.1$ & slow & 188\,(5.4) & 184\,(3.4) & 182\,(3.3) &
+cant.\ $r1.1$ & slow & 188\,(5.4) & 184\,(3.4) & 182\,(3.3)$^{\dagger}$ &
   182\,(3.5) & 182\,(3.5) & 182\,(3.7) \\
 MBB vf$0.4$ & fast & \textbf{243} & 247$^{\ast}$ & 252$^{\ast}$ &
   244 & 245 & 244 \\
 MBB vf$0.4$ & slow & 247 & 249$^{\ast}$ & 253$^{\ast}$ &
-  247 & \textbf{246} & \textbf{246} \\
+  247 & 246 & 246 \\
 \midrule
 \multicolumn{2}{l}{oscillating (6 groups)} & 0/6 & 1/6 & 5/6 & 0/6 &
   0/6 & 0/6 \\
-\multicolumn{2}{l}{median $\Delta$compliance} & $+1.38\%$ & $+0.22\%$ &
-  $+2.13\%$ & $+0.22\%$ & $+0.62\%$ & $\mathbf{+0.02\%}$ \\
+\multicolumn{2}{l}{masked (6 groups)} & 0/6 & 2/6 & 1/6 & 3/6 &
+  0/6 & 0/6 \\
+\multicolumn{2}{l}{median $\Delta$compliance} & $+0.66\%$ & $+0.22\%$ &
+  $+1.93\%$ & $+0.09\%$ & $+0.20\%$ & $\mathbf{+0.02\%}$ \\
 \multicolumn{2}{l}{worst $\Delta$compliance} & $+3.2\%$ & $+2.9\%$ &
-  $+11.0\%$ & $+1.4\%$ & $+2.7\%$ & $+1.5\%$ \\
+  $+11.0\%$ & $+1.4\%$ & $+2.7\%$ & $\mathbf{+0.4\%}$ \\
 \multicolumn{2}{l}{never reached $10^{-5}$} & 1/6 & 3/6 & 6/6 & 4/6 &
   \textbf{0/6} & \textbf{0/6} \\
 \bottomrule
@@ -870,12 +904,18 @@ MBB vf$0.4$ & slow & 247 & 249$^{\ast}$ & 253$^{\ast}$ &
 
 \smallskip
 {\footnotesize Summary rows cover the six fully instrumented groups.
-The vf$0.4$ compliances come from the replication study; that group's
-endpoint spectra were measured separately (text).
+$\Delta$compliance is measured against the best \emph{settled} run of
+each group (neither oscillating nor masked); masked iterates can sit
+below it, so the $\Delta$ rows of failing methods are not quality
+claims; for visibly oscillating runs the recorded compliance is that of
+the last recorded iterate and depends on the cycle's phase (by up to a
+few percent). The vf$0.4$ compliances come from the replication study; that
+group's endpoint spectra were measured separately (text).
 ``Never reached $10^{-5}$'' counts groups whose step amplitude never
 settles below $10^{-5}$ after the ramp ends---the speed axis. Across
-three perturbed restarts per group, every oscillation tag replicates at
-3/3 seeds, and no controller run fails at any start.}
+three perturbed restarts per group, every oscillation and masked tag
+replicates at 3/3 seeds, and no controller run fails (visibly or
+masked) at any start.}
 \end{table}
 
 \subsection{Tuning-failure rates across the suite}\label{sec:sweeprates}
@@ -1000,8 +1040,10 @@ limit cycles from either start ($0/11$ both): it does not trade visible
 oscillation for invisible oscillation. That fixed $\tfrac12$ also
 scores $0/11$ while operating $0.6\%$ from its threshold at R0 is
 explained by Section~\ref{sec:saturation}---self-limiting keeps the
-reachable fixed points at $\smax\le2/\eta$, so the standard damping
-ends up inside its own boundary rather than on it. The third law
+reachable fixed points at $\smax\le2/\eta$, so in this suite the
+standard damping ends up inside its own boundary rather than on it.
+(Under continuation the same ceiling can be reached exactly, and the
+iteration then cycles masked; Section~\ref{sec:continuation}(iii).) The third law
 predicts the failure-rate table.
 
 \subsection{Composition with Anderson acceleration}\label{sec:anderson}
@@ -1069,14 +1111,58 @@ optimal rather than lucky. Exact curvature $\Leftrightarrow$ deadbeat;
 half curvature $\Leftrightarrow$ flip boundary $\Leftrightarrow$
 min--max optimum at $p=3$.
 
-\paragraph{Why $p+1$?} The saturation $\smax\to p{+}1$ says the
-dangerous mode behaves like a statically determinate substructure; its
-measured localization (participation ratio $\approx11$ of 360 free
-elements at the canonical benchmark, $\approx20$ at $p=5$), its
-suppression by spatial averaging, and its persistence across
-$p\in[1.5,5]$ all fit, but we have no proof. Along with the
-critical behavior near onset (soft transitions, capacity adaptation),
-this is deferred to a separate, physics-oriented study.
+\paragraph{Why $p+1$?} For exact-gradient SIMP---unfiltered, or
+density-filtered with the exact chain rule---the edge is a theorem.
+Let $C(x)$ be the compliance as a function of the design variables,
+$D=-\nabla C$ its exact gradient, $X=\operatorname{diag}(x)$,
+$\Gamma=\operatorname{diag}(x_eD_e)$, and $S=-\partial\ln D/\partial\ln x$
+the unprojected operator whose tangent compression is $\mathcal S$ of
+\eqref{eq:JT}. Then $\Gamma S=X\,\nabla^2C\,X$, so $S$ is self-adjoint
+in the $\Gamma$-metric with real spectrum, and for every design and
+every perturbation
+\begin{equation}
+-(p-1)\sum_e D_e\frac{\delta x_e^2}{x_e}\;\le\;
+\delta x^{\mathsf T}\nabla^2C\,\delta x\;\le\;
+(p+1)\sum_e D_e\frac{\delta x_e^2}{x_e},
+\label{eq:enclosure}
+\end{equation}
+i.e.\ $\operatorname{spec}(S)\subset[-(p{-}1),p{+}1]$ for any
+$E_{\min}\in[0,1)$ and $p\ge1$. Inequality~\eqref{eq:enclosure} is the
+log-coordinate, second-order form of Svanberg's convexity of compliance
+in the stiffness variable $t$ and concavity in $1/t$
+\citep{svanberg1994convexity}, transported to SIMP by $t=x^p$ (with
+$E_{\min}>0$ the stiffness stays affine in $t$ and its reciprocal
+concave in $1/t$); a Jensen step carries it through any nonnegative
+row-normalized density filter, and Cauchy interlacing carries it to the
+tangent of the active face at every OC fixed point with strict
+complementarity. Both edges are attained---the series and parallel
+models (Propositions~\ref{prop:series} and~\ref{prop:parallel}) are the
+two extremes, the top edge belonging to statically determinate
+perturbations---so $\eta<2/(p{+}1)$ is flip-free at every fixed point
+of every such problem, and no larger fixed damping has that property:
+at $\eta=2/(p{+}1)$ itself a top-edge mode is marginal ($\mu=-1$, the
+series model), and at $p=3$ that value is exactly the folklore
+$\tfrac12$. In the
+dictionary of \citet{groenwold2008}, the reciprocal intervening
+variable ($a=-1$, $\eta=\tfrac12$) assigns every mode the model
+stiffness $1-a=2=\tfrac12(p{+}1)$ at $p=3$: half the top-edge curvature,
+hence the flip edge. The bound caps $\smax$ but does not predict it
+(the density filter's $0.37$ sits far inside). For sensitivity
+filtering---the regime of most of this paper---the edge is \emph{not} a
+theorem: the filtered sensitivity is not a gradient, $S$ is not
+symmetrizable, and an adversarial search over designs finds the
+operator's top eigenvalue above $p{+}1$ by about $1\%$ ($6.06$, i.e.\
+$1.01(p{+}1)$, at $p=5$ on a $20\times10$ MBB, $r_{\min}=1.5$,
+persisting at $E_{\min}=0$),
+whereas every converged fixed point in this paper stays below it
+($\smax/(p{+}1)=0.961$--$0.995$ across the $p$-sweep, at most $0.9999$
+at the continuation endpoints). The measured saturation is therefore
+the approach to an edge that is proved for exact gradients and only
+empirical here; the localization of the dangerous mode (participation
+ratio $\approx11$ of 360 free elements at the canonical benchmark,
+$\approx20$ at $p=5$) fits the statically determinate equality case.
+The critical behavior near onset (soft transitions, capacity adaptation)
+is deferred to a separate, physics-oriented study.
 
 % =========================================================================
 \section{Limitations}\label{sec:limits}
@@ -1092,7 +1178,8 @@ latter a timescale interaction (probe rate versus structural evolution
 within the budget), consistent with the fact that the controller's only
 non-dimensionless constants are timescales. The continuation evidence
 spans four configurations, two schedules, and up to four starts per
-group (fixed $0.5$ failing 12 of 32 runs, the controller none of 64);
+group (fixed $0.5$ failing 20 of 32 runs, 8 of them masked; the
+controller none of 64);
 $120\times40$ continuation was not run. The Anderson variant is ours (periodic, undamped
 type-II with projections); other AA flavors may not break at
 $\eta=0.5$. The MMA column uses our compact single-constraint
@@ -1106,8 +1193,11 @@ measurements. Amplitude-based convergence criteria are fooled by
 masked oscillation---move-limited or near-threshold
 (Section~\ref{sec:sweeprates}); we recommend monitoring $\muh$
 alongside any amplitude tolerance.
-The $p{+}1$ saturation and filter-detuning mechanisms are measured
-regularities awaiting analysis.
+The $p{+}1$ edge is a theorem only for exact gradients
+(Section~\ref{sec:discussion}); for sensitivity filtering the
+saturation, like the filter-detuning mechanism, remains a measured
+regularity, and the enclosure itself fails there at the operator level
+by about $1\%$.
 
 % =========================================================================
 \section{Conclusion}\label{sec:conclusion}
@@ -1280,8 +1370,11 @@ falling threshold $2/(p(t){+}1)$ it was never told about (MBB
 $r_{\min}1.1$, fast schedule; right axis: $p(t)$). (b)~the fast ramp
 breaks fixed $\eta=0.5$ on the cantilever while the controller converges
 to $10^{-10}$. (c)~endpoint $\smax$: fixed $0.5$ lands on the capacity
-ceiling $2/\eta=4$, the controller from $\eta_0=1.0$ reaches the
-naturally saturated family $p{+}1=6$, on both schedules.}
+ceiling $2/\eta=4$---with $\eta\,\smax\approx2$ a masked limit cycle,
+not a settled design (as are the ladder's MBB $r_{\min}1.1$ endpoints;
+gray marks only visible oscillation)---the controller from
+$\eta_0=1.0$ reaches the naturally saturated family $p{+}1=6$, on both
+schedules.}
 \label{fig:cont}
 \end{figure}
 

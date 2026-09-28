@@ -62,6 +62,12 @@ python src/ce_defense.py all        # move-limit baseline, endpoint spectra,
 python src/cf_seeds.py              # perturbed-restart statistics (~18 min)
 python src/cg_cascade.py            # period-doubling cascade test
 python src/ch_vf04.py               # vf0.4 continuation endpoint spectra
+python src/g1_cont_masked.py        # masked tags, 6 methods x 32 continuation runs
+                                    #   (~20 min; or split, e.g. fix0.3,fix0.5)
+python src/g1_cont_masked.py merge  # -> data/g1_cont_masked.json (Table tab:cont)
+python src/g1_cont_masked.py ride   # boundary riding at the p=5 hold (Sec. 6.3)
+python src/g1_enclosure.py          # spectral enclosure check + sensitivity-filter
+                                    #   counterexample (~1 min)
 
 python src/pub_figs.py              # paper Figs 1-3, 6
 python src/c5_fig_pub.py            # paper Figs 6-7 (p-sweep, negative branch)
